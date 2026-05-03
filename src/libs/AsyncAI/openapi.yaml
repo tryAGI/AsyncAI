@@ -1,0 +1,581 @@
+openapi: 3.0.3
+info:
+  title: Async Voice API
+  version: 1.0.0
+  description: Text-to-speech, streaming speech, voice cloning, and voice management API for Async.
+servers:
+  - url: https://api.async.com
+security:
+  - ApiKeyAuth: []
+paths:
+  /:
+    get:
+      operationId: getStatus
+      summary: API status check
+      tags:
+        - API Status
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/VersionHeader'
+      responses:
+        '200':
+          description: API status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+  /text_to_speech:
+    post:
+      operationId: synthesizeSpeech
+      summary: Text to speech
+      description: Generates speech from text and returns complete audio.
+      tags:
+        - Text to Speech
+      parameters:
+        - $ref: '#/components/parameters/VersionHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TextToSpeechRequest'
+      responses:
+        '200':
+          description: Generated audio.
+          content:
+            audio/mpeg:
+              schema:
+                type: string
+                format: binary
+            audio/wav:
+              schema:
+                type: string
+                format: binary
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        default:
+          $ref: '#/components/responses/Error'
+  /text_to_speech/streaming:
+    post:
+      operationId: streamSpeech
+      summary: Text to speech stream
+      description: Generates speech from text and streams audio in the response body.
+      tags:
+        - Text to Speech
+      parameters:
+        - $ref: '#/components/parameters/VersionHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TextToSpeechRequest'
+      responses:
+        '200':
+          description: Streaming generated audio.
+          content:
+            audio/mpeg:
+              schema:
+                type: string
+                format: binary
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        default:
+          $ref: '#/components/responses/Error'
+  /text_to_speech/with_timestamps:
+    post:
+      operationId: synthesizeSpeechWithTimestamps
+      summary: Text to speech with word timestamps
+      description: Generates speech and returns base64 audio with word-level timestamps.
+      tags:
+        - Text to Speech
+      parameters:
+        - $ref: '#/components/parameters/VersionHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TextToSpeechRequest'
+      responses:
+        '200':
+          description: Generated audio and alignment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TextToSpeechWithTimestampsResponse'
+        default:
+          $ref: '#/components/responses/Error'
+  /voices:
+    post:
+      operationId: listVoices
+      summary: List voices
+      description: Lists available voices from the voice library.
+      tags:
+        - Voice Management
+      parameters:
+        - $ref: '#/components/parameters/VersionHeader'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListVoicesRequest'
+      responses:
+        '200':
+          description: Voice page.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListVoicesResponse'
+        default:
+          $ref: '#/components/responses/Error'
+  /voices/batch:
+    post:
+      operationId: getVoicesBatch
+      summary: Get voices by id
+      description: Gets multiple voices by voice id.
+      tags:
+        - Voice Management
+      parameters:
+        - $ref: '#/components/parameters/VersionHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetVoicesBatchRequest'
+      responses:
+        '200':
+          description: Voices.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Voice'
+        default:
+          $ref: '#/components/responses/Error'
+  /voices/clone:
+    post:
+      operationId: cloneVoice
+      summary: Clone voice
+      description: Clones a voice from a short audio clip.
+      tags:
+        - Voice Management
+      parameters:
+        - $ref: '#/components/parameters/VersionHeader'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CloneVoiceRequest'
+      responses:
+        '200':
+          description: Cloned voice.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloneVoiceResponse'
+        default:
+          $ref: '#/components/responses/Error'
+  /voices/{id}:
+    get:
+      operationId: getVoice
+      summary: Get voice
+      description: Gets a voice by id.
+      tags:
+        - Voice Management
+      parameters:
+        - $ref: '#/components/parameters/VoiceId'
+        - $ref: '#/components/parameters/VersionHeader'
+      responses:
+        '200':
+          description: Voice.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Voice'
+        default:
+          $ref: '#/components/responses/Error'
+    put:
+      operationId: updateVoice
+      summary: Update voice
+      description: Updates metadata for a cloned voice.
+      tags:
+        - Voice Management
+      parameters:
+        - $ref: '#/components/parameters/VoiceId'
+        - $ref: '#/components/parameters/VersionHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateVoiceRequest'
+      responses:
+        '204':
+          description: Voice updated.
+        default:
+          $ref: '#/components/responses/Error'
+    delete:
+      operationId: deleteVoice
+      summary: Delete voice
+      description: Deletes a cloned voice by id.
+      tags:
+        - Voice Management
+      parameters:
+        - $ref: '#/components/parameters/VoiceId'
+        - $ref: '#/components/parameters/VersionHeader'
+      responses:
+        '204':
+          description: Voice deleted.
+        default:
+          $ref: '#/components/responses/Error'
+  /voices/preview/{id}:
+    get:
+      operationId: getVoicePreview
+      summary: Get voice preview
+      description: Gets a signed URL for voice preview audio.
+      tags:
+        - Voice Management
+      parameters:
+        - $ref: '#/components/parameters/VoiceId'
+        - $ref: '#/components/parameters/VersionHeader'
+      responses:
+        '200':
+          description: Preview URL.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoicePreviewResponse'
+        default:
+          $ref: '#/components/responses/Error'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+  parameters:
+    VersionHeader:
+      name: version
+      in: header
+      required: false
+      schema:
+        type: string
+        default: v1
+      description: API version header.
+    VoiceId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Voice id.
+  responses:
+    Error:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    StatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        version:
+          type: string
+      required:
+        - status
+        - version
+    TextToSpeechRequest:
+      type: object
+      properties:
+        model_id:
+          type: string
+          default: async_flash_v1.0
+          enum:
+            - async_flash_v1.0
+        transcript:
+          type: string
+        voice:
+          $ref: '#/components/schemas/VoiceSelector'
+        output_format:
+          $ref: '#/components/schemas/OutputFormat'
+        language:
+          $ref: '#/components/schemas/LanguageCode'
+        normalize:
+          type: boolean
+          default: false
+        speed_control:
+          type: number
+          minimum: 0.7
+          maximum: 2
+        stability:
+          type: integer
+          minimum: 0
+          maximum: 100
+      required:
+        - model_id
+        - transcript
+        - voice
+        - output_format
+    VoiceSelector:
+      type: object
+      properties:
+        mode:
+          type: string
+          enum:
+            - id
+        id:
+          type: string
+      required:
+        - mode
+        - id
+    OutputFormat:
+      type: object
+      properties:
+        container:
+          type: string
+          enum:
+            - raw
+            - mp3
+            - wav
+        encoding:
+          type: string
+          default: pcm_s16le
+          enum:
+            - pcm_f32le
+            - pcm_s16le
+            - pcm_mulaw
+        sample_rate:
+          type: integer
+          minimum: 8000
+          maximum: 48000
+        bit_rate:
+          type: integer
+          minimum: 32000
+          maximum: 320000
+          default: 192000
+      required:
+        - container
+        - sample_rate
+    LanguageCode:
+      type: string
+      enum:
+        - en
+        - fr
+        - es
+        - de
+        - it
+        - pt
+        - nl
+        - ar
+        - ru
+        - ro
+        - ja
+        - he
+        - hy
+        - tr
+        - hi
+        - zh
+    TextToSpeechWithTimestampsResponse:
+      type: object
+      properties:
+        audio_base64:
+          type: string
+        alignment:
+          $ref: '#/components/schemas/Alignment'
+      required:
+        - audio_base64
+        - alignment
+    Alignment:
+      type: object
+      properties:
+        words:
+          type: array
+          items:
+            type: string
+        word_start_times_milliseconds:
+          type: array
+          items:
+            type: number
+        word_end_times_milliseconds:
+          type: array
+          items:
+            type: number
+      required:
+        - words
+        - word_start_times_milliseconds
+        - word_end_times_milliseconds
+    ListVoicesRequest:
+      type: object
+      properties:
+        limit:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 10
+        gender:
+          $ref: '#/components/schemas/Gender'
+        after:
+          type: string
+        my_voice:
+          type: boolean
+        accent:
+          type: string
+        style:
+          type: string
+        model_id:
+          type: string
+          enum:
+            - async_flash_v1.0
+        language:
+          $ref: '#/components/schemas/LanguageCode'
+    ListVoicesResponse:
+      type: object
+      properties:
+        voices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Voice'
+        next_cursor:
+          type: string
+      required:
+        - voices
+        - next_cursor
+    GetVoicesBatchRequest:
+      type: object
+      properties:
+        voice_ids:
+          type: array
+          items:
+            type: string
+      required:
+        - voice_ids
+    CloneVoiceRequest:
+      type: object
+      properties:
+        audio:
+          type: string
+          format: binary
+          description: Audio clip file. Supported formats include wav, mp3, flac, and aiff.
+        name:
+          type: string
+        description:
+          type: string
+        accent:
+          type: string
+        gender:
+          $ref: '#/components/schemas/Gender'
+        style:
+          type: string
+        enhance:
+          type: boolean
+          default: false
+        transcript:
+          type: string
+      required:
+        - audio
+        - name
+    CloneVoiceResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        language:
+          type: string
+      required:
+        - id
+        - name
+        - description
+        - language
+    UpdateVoiceRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        gender:
+          $ref: '#/components/schemas/Gender'
+        style:
+          type: string
+        accent:
+          type: string
+    VoicePreviewResponse:
+      type: object
+      properties:
+        signed_url:
+          type: string
+      required:
+        - signed_url
+    Voice:
+      type: object
+      properties:
+        voice_id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        language:
+          type: string
+        gender:
+          $ref: '#/components/schemas/Gender'
+        accent:
+          type: string
+        style:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        voice_type:
+          type: string
+          enum:
+            - PREDEFINED
+            - CUSTOM
+      required:
+        - voice_id
+        - name
+        - description
+        - language
+        - gender
+        - accent
+        - style
+        - created_at
+        - updated_at
+        - voice_type
+    Gender:
+      type: string
+      enum:
+        - Male
+        - Female
+        - Neutral
+        - Unspecified
+    ErrorResponse:
+      type: object
+      properties:
+        detail:
+          type: object
+          additionalProperties: true
+        error_code:
+          type: string
+        message:
+          type: string
+        extra:
+          type: object
+          additionalProperties: true

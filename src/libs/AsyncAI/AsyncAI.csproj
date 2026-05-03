@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Nuget">
+    <Description>Generated C# SDK for the Async Voice API -- text-to-speech, streaming speech, voice cloning, and voice management.</Description>
+    <PackageTags>async;asyncai;tts;text-to-speech;voice;cloning;api;sdk;dotnet;openapi;autosdk</PackageTags>
+  </PropertyGroup>
+
+</Project>
