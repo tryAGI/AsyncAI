@@ -43,7 +43,7 @@ namespace AsyncAI
         /// <summary>
         /// 
         /// </summary>
-        public ApiStatusClient ApiStatus => new ApiStatusClient(HttpClient, authorizations: Authorizations, options: Options)
+        public ApiStatusClient ApiStatus => new ApiStatusClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -52,7 +52,7 @@ namespace AsyncAI
         /// <summary>
         /// 
         /// </summary>
-        public TextToSpeechClient TextToSpeech => new TextToSpeechClient(HttpClient, authorizations: Authorizations, options: Options)
+        public TextToSpeechClient TextToSpeech => new TextToSpeechClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -61,7 +61,7 @@ namespace AsyncAI
         /// <summary>
         /// 
         /// </summary>
-        public VoiceManagementClient VoiceManagement => new VoiceManagementClient(HttpClient, authorizations: Authorizations, options: Options)
+        public VoiceManagementClient VoiceManagement => new VoiceManagementClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -100,10 +100,10 @@ namespace AsyncAI
         /// <param name="options">Client-wide request defaults such as headers, query parameters, retries, and timeout.</param>
         /// <param name="disposeHttpClient">Dispose the HttpClient when the instance is disposed. True by default.</param>
         public AsyncAIClient(
-            global::System.Net.Http.HttpClient? httpClient = null,
-            global::System.Uri? baseUri = null,
-            global::System.Collections.Generic.List<global::AsyncAI.EndPointAuthorization>? authorizations = null,
-            global::AsyncAI.AutoSDKClientOptions? options = null,
+            global::System.Net.Http.HttpClient? httpClient,
+            global::System.Uri? baseUri,
+            global::System.Collections.Generic.List<global::AsyncAI.EndPointAuthorization>? authorizations,
+            global::AsyncAI.AutoSDKClientOptions? options,
             bool disposeHttpClient = true)
         {
 
