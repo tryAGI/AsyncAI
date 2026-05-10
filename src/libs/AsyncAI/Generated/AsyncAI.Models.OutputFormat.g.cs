@@ -74,5 +74,6 @@ namespace AsyncAI
         public OutputFormat()
         {
         }
+
     }
 }
