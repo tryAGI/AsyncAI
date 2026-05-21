@@ -60,5 +60,6 @@ namespace AsyncAI
         public Alignment()
         {
         }
+
     }
 }
