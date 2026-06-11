@@ -40,6 +40,13 @@ using AsyncAI;
 using var client = new AsyncAIClient(apiKey);
 ```
 
+### CLI
+
+```bash
+dotnet tool install --global AsyncAI.CLI --prerelease
+async-ai api --help
+```
+
 <!-- EXAMPLES:START -->
 ### Generate
 Basic example showing how to create a client and make a request.
