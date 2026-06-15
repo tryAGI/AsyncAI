@@ -95,12 +95,12 @@ Generates speech and returns base64 audio with word-level timestamps.");
                             cancellationToken).ConfigureAwait(false);
                         var version = parseResult.GetValue(Version);                        var modelId = parseResult.GetRequiredValue(TextToSpeechRequestOptionSetOptions.ModelId);
                         var transcript = parseResult.GetRequiredValue(TextToSpeechRequestOptionSetOptions.Transcript);
-                        var language = CliRuntime.WasSpecified(parseResult, TextToSpeechRequestOptionSetOptions.Language) ? parseResult.GetValue(TextToSpeechRequestOptionSetOptions.Language) : __requestBase is not null ? __requestBase.Language : default;
-                        var normalize = CliRuntime.WasSpecified(parseResult, TextToSpeechRequestOptionSetOptions.Normalize) ? parseResult.GetValue(TextToSpeechRequestOptionSetOptions.Normalize) : __requestBase is not null ? __requestBase.Normalize : default;
-                        var speedControl = CliRuntime.WasSpecified(parseResult, TextToSpeechRequestOptionSetOptions.SpeedControl) ? parseResult.GetValue(TextToSpeechRequestOptionSetOptions.SpeedControl) : __requestBase is not null ? __requestBase.SpeedControl : default;
-                        var stability = CliRuntime.WasSpecified(parseResult, TextToSpeechRequestOptionSetOptions.Stability) ? parseResult.GetValue(TextToSpeechRequestOptionSetOptions.Stability) : __requestBase is not null ? __requestBase.Stability : default;
+                        var language = CliRuntime.WasSpecified(parseResult, TextToSpeechRequestOptionSetOptions.Language) ? parseResult.GetValue(TextToSpeechRequestOptionSetOptions.Language) : (__requestBase is { } __LanguageBaseValue ? __LanguageBaseValue.Language : default);
+                        var normalize = CliRuntime.WasSpecified(parseResult, TextToSpeechRequestOptionSetOptions.Normalize) ? parseResult.GetValue(TextToSpeechRequestOptionSetOptions.Normalize) : (__requestBase is { } __NormalizeBaseValue ? __NormalizeBaseValue.Normalize : default);
+                        var speedControl = CliRuntime.WasSpecified(parseResult, TextToSpeechRequestOptionSetOptions.SpeedControl) ? parseResult.GetValue(TextToSpeechRequestOptionSetOptions.SpeedControl) : (__requestBase is { } __SpeedControlBaseValue ? __SpeedControlBaseValue.SpeedControl : default);
+                        var stability = CliRuntime.WasSpecified(parseResult, TextToSpeechRequestOptionSetOptions.Stability) ? parseResult.GetValue(TextToSpeechRequestOptionSetOptions.Stability) : (__requestBase is { } __StabilityBaseValue ? __StabilityBaseValue.Stability : default);
 
-                        var __voiceBase = __requestBase?.Voice;                        var voiceMode = CliRuntime.WasSpecified(parseResult, VoiceOptions.Mode) ? parseResult.GetValue(VoiceOptions.Mode) : __voiceBase is not null ? __voiceBase.Mode : default;
+                        var __voiceBase = __requestBase is { } __VoiceBaseValue ? __VoiceBaseValue.Voice : default;                        var voiceMode = CliRuntime.WasSpecified(parseResult, VoiceOptions.Mode) ? parseResult.GetValue(VoiceOptions.Mode) : (__voiceBase is { } __VoicemodeBaseValue ? __VoicemodeBaseValue.Mode : default);
                         var voiceId = parseResult.GetValue(VoiceOptions.Id);
                         var __voiceSpecified = CliRuntime.WasSpecified(parseResult, VoiceOptions.Mode) || CliRuntime.WasSpecified(parseResult, VoiceOptions.Id);
                         var voice =
@@ -113,10 +113,10 @@ Generates speech and returns base64 audio with word-level timestamps.");
                                 }
                                 : __voiceBase;
 
-                        var __outputFormatBase = __requestBase?.OutputFormat;                        var outputFormatContainer = parseResult.GetValue(OutputFormatOptions.Container);
-                        var outputFormatEncoding = CliRuntime.WasSpecified(parseResult, OutputFormatOptions.Encoding) ? parseResult.GetValue(OutputFormatOptions.Encoding) : __outputFormatBase is not null ? __outputFormatBase.Encoding : default;
+                        var __outputFormatBase = __requestBase is { } __OutputFormatBaseValue ? __OutputFormatBaseValue.OutputFormat : default;                        var outputFormatContainer = parseResult.GetValue(OutputFormatOptions.Container);
+                        var outputFormatEncoding = CliRuntime.WasSpecified(parseResult, OutputFormatOptions.Encoding) ? parseResult.GetValue(OutputFormatOptions.Encoding) : (__outputFormatBase is { } __OutputFormatencodingBaseValue ? __OutputFormatencodingBaseValue.Encoding : default);
                         var outputFormatSampleRate = parseResult.GetValue(OutputFormatOptions.SampleRate);
-                        var outputFormatBitRate = CliRuntime.WasSpecified(parseResult, OutputFormatOptions.BitRate) ? parseResult.GetValue(OutputFormatOptions.BitRate) : __outputFormatBase is not null ? __outputFormatBase.BitRate : default;
+                        var outputFormatBitRate = CliRuntime.WasSpecified(parseResult, OutputFormatOptions.BitRate) ? parseResult.GetValue(OutputFormatOptions.BitRate) : (__outputFormatBase is { } __OutputFormatbitRateBaseValue ? __OutputFormatbitRateBaseValue.BitRate : default);
                         var __outputFormatSpecified = CliRuntime.WasSpecified(parseResult, OutputFormatOptions.Container) || CliRuntime.WasSpecified(parseResult, OutputFormatOptions.Encoding) || CliRuntime.WasSpecified(parseResult, OutputFormatOptions.SampleRate) || CliRuntime.WasSpecified(parseResult, OutputFormatOptions.BitRate);
                         var outputFormat =
                             __outputFormatSpecified || __outputFormatBase is not null

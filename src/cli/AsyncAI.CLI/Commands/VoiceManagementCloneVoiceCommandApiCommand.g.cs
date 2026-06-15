@@ -146,12 +146,12 @@ Clones a voice from a short audio clip.");
                         var version = parseResult.GetValue(Version);
                         var audio = parseResult.GetRequiredValue(Audio);
                         var audioname = parseResult.GetRequiredValue(Audioname);
-                        var description = CliRuntime.WasSpecified(parseResult, DescriptionOption) ? parseResult.GetValue(DescriptionOption) : __requestBase is not null ? __requestBase.Description : default;
-                        var accent = CliRuntime.WasSpecified(parseResult, Accent) ? parseResult.GetValue(Accent) : __requestBase is not null ? __requestBase.Accent : default;
-                        var gender = CliRuntime.WasSpecified(parseResult, Gender) ? parseResult.GetValue(Gender) : __requestBase is not null ? __requestBase.Gender : default;
-                        var style = CliRuntime.WasSpecified(parseResult, Style) ? parseResult.GetValue(Style) : __requestBase is not null ? __requestBase.Style : default;
-                        var enhance = CliRuntime.WasSpecified(parseResult, Enhance) ? parseResult.GetValue(Enhance) : __requestBase is not null ? __requestBase.Enhance : default;
-                        var transcript = CliRuntime.WasSpecified(parseResult, Transcript) ? parseResult.GetValue(Transcript) : __requestBase is not null ? __requestBase.Transcript : default;
+                        var description = CliRuntime.WasSpecified(parseResult, DescriptionOption) ? parseResult.GetValue(DescriptionOption) : (__requestBase is { } __DescriptionBaseValue ? __DescriptionBaseValue.Description : default);
+                        var accent = CliRuntime.WasSpecified(parseResult, Accent) ? parseResult.GetValue(Accent) : (__requestBase is { } __AccentBaseValue ? __AccentBaseValue.Accent : default);
+                        var gender = CliRuntime.WasSpecified(parseResult, Gender) ? parseResult.GetValue(Gender) : (__requestBase is { } __GenderBaseValue ? __GenderBaseValue.Gender : default);
+                        var style = CliRuntime.WasSpecified(parseResult, Style) ? parseResult.GetValue(Style) : (__requestBase is { } __StyleBaseValue ? __StyleBaseValue.Style : default);
+                        var enhance = CliRuntime.WasSpecified(parseResult, Enhance) ? parseResult.GetValue(Enhance) : (__requestBase is { } __EnhanceBaseValue ? __EnhanceBaseValue.Enhance : default);
+                        var transcript = CliRuntime.WasSpecified(parseResult, Transcript) ? parseResult.GetValue(Transcript) : (__requestBase is { } __TranscriptBaseValue ? __TranscriptBaseValue.Transcript : default);
                 using var client = await CliRuntime.CreateClientAsync(parseResult, cancellationToken).ConfigureAwait(false);
 
 
