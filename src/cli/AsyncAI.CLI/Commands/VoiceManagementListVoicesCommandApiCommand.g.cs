@@ -134,14 +134,14 @@ Lists available voices from the voice library.");
                             global::AsyncAI.SourceGenerationContext.Default,
                             cancellationToken).ConfigureAwait(false);
                         var version = parseResult.GetValue(Version);
-                        var limit = CliRuntime.WasSpecified(parseResult, Limit) ? parseResult.GetValue(Limit) : __requestBase is not null ? __requestBase.Limit : default;
-                        var gender = CliRuntime.WasSpecified(parseResult, Gender) ? parseResult.GetValue(Gender) : __requestBase is not null ? __requestBase.Gender : default;
-                        var after = CliRuntime.WasSpecified(parseResult, After) ? parseResult.GetValue(After) : __requestBase is not null ? __requestBase.After : default;
-                        var myVoice = CliRuntime.WasSpecified(parseResult, MyVoice) ? parseResult.GetValue(MyVoice) : __requestBase is not null ? __requestBase.MyVoice : default;
-                        var accent = CliRuntime.WasSpecified(parseResult, Accent) ? parseResult.GetValue(Accent) : __requestBase is not null ? __requestBase.Accent : default;
-                        var style = CliRuntime.WasSpecified(parseResult, Style) ? parseResult.GetValue(Style) : __requestBase is not null ? __requestBase.Style : default;
-                        var modelId = CliRuntime.WasSpecified(parseResult, ModelId) ? parseResult.GetValue(ModelId) : __requestBase is not null ? __requestBase.ModelId : default;
-                        var language = CliRuntime.WasSpecified(parseResult, Language) ? parseResult.GetValue(Language) : __requestBase is not null ? __requestBase.Language : default;
+                        var limit = CliRuntime.WasSpecified(parseResult, Limit) ? parseResult.GetValue(Limit) : (__requestBase is { } __LimitBaseValue ? __LimitBaseValue.Limit : default);
+                        var gender = CliRuntime.WasSpecified(parseResult, Gender) ? parseResult.GetValue(Gender) : (__requestBase is { } __GenderBaseValue ? __GenderBaseValue.Gender : default);
+                        var after = CliRuntime.WasSpecified(parseResult, After) ? parseResult.GetValue(After) : (__requestBase is { } __AfterBaseValue ? __AfterBaseValue.After : default);
+                        var myVoice = CliRuntime.WasSpecified(parseResult, MyVoice) ? parseResult.GetValue(MyVoice) : (__requestBase is { } __MyVoiceBaseValue ? __MyVoiceBaseValue.MyVoice : default);
+                        var accent = CliRuntime.WasSpecified(parseResult, Accent) ? parseResult.GetValue(Accent) : (__requestBase is { } __AccentBaseValue ? __AccentBaseValue.Accent : default);
+                        var style = CliRuntime.WasSpecified(parseResult, Style) ? parseResult.GetValue(Style) : (__requestBase is { } __StyleBaseValue ? __StyleBaseValue.Style : default);
+                        var modelId = CliRuntime.WasSpecified(parseResult, ModelId) ? parseResult.GetValue(ModelId) : (__requestBase is { } __ModelIdBaseValue ? __ModelIdBaseValue.ModelId : default);
+                        var language = CliRuntime.WasSpecified(parseResult, Language) ? parseResult.GetValue(Language) : (__requestBase is { } __LanguageBaseValue ? __LanguageBaseValue.Language : default);
                 using var client = await CliRuntime.CreateClientAsync(parseResult, cancellationToken).ConfigureAwait(false);
 
 
