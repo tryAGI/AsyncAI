@@ -80,26 +80,26 @@ Generates speech from text and streams audio in the response body.");
                         var speedControl = CliRuntime.WasSpecified(parseResult, TextToSpeechRequestOptionSetOptions.SpeedControl) ? parseResult.GetValue(TextToSpeechRequestOptionSetOptions.SpeedControl) : (__requestBase is { } __SpeedControlBaseValue ? __SpeedControlBaseValue.SpeedControl : default);
                         var stability = CliRuntime.WasSpecified(parseResult, TextToSpeechRequestOptionSetOptions.Stability) ? parseResult.GetValue(TextToSpeechRequestOptionSetOptions.Stability) : (__requestBase is { } __StabilityBaseValue ? __StabilityBaseValue.Stability : default);
 
-                        var __voiceBase = __requestBase is { } __VoiceBaseValue ? __VoiceBaseValue.Voice : default;                        var voiceMode = CliRuntime.WasSpecified(parseResult, VoiceOptions.Mode) ? parseResult.GetValue(VoiceOptions.Mode) : (__voiceBase is { } __VoicemodeBaseValue ? __VoicemodeBaseValue.Mode : default);
+                        var __VoiceBase = __requestBase is { } __VoiceBaseValue ? __VoiceBaseValue.Voice : default;                        var voiceMode = CliRuntime.WasSpecified(parseResult, VoiceOptions.Mode) ? parseResult.GetValue(VoiceOptions.Mode) : (__VoiceBase is { } __VoicemodeBaseValue ? __VoicemodeBaseValue.Mode : default);
                         var voiceId = parseResult.GetValue(VoiceOptions.Id);
-                        var __voiceSpecified = CliRuntime.WasSpecified(parseResult, VoiceOptions.Mode) || CliRuntime.WasSpecified(parseResult, VoiceOptions.Id);
+                        var __VoiceSpecified = CliRuntime.WasSpecified(parseResult, VoiceOptions.Mode) || CliRuntime.WasSpecified(parseResult, VoiceOptions.Id);
                         var voice =
-                            __voiceSpecified || __voiceBase is not null
+                            __VoiceSpecified || __VoiceBase is not null
                                 ? new global::AsyncAI.VoiceSelector
                                 {
 	                                Mode = voiceMode,
                                 Id = voiceId!,
 
                                 }
-                                : __voiceBase;
+                                : __VoiceBase;
 
-                        var __outputFormatBase = __requestBase is { } __OutputFormatBaseValue ? __OutputFormatBaseValue.OutputFormat : default;                        var outputFormatContainer = parseResult.GetValue(OutputFormatOptions.Container);
-                        var outputFormatEncoding = CliRuntime.WasSpecified(parseResult, OutputFormatOptions.Encoding) ? parseResult.GetValue(OutputFormatOptions.Encoding) : (__outputFormatBase is { } __OutputFormatencodingBaseValue ? __OutputFormatencodingBaseValue.Encoding : default);
+                        var __OutputFormatBase = __requestBase is { } __OutputFormatBaseValue ? __OutputFormatBaseValue.OutputFormat : default;                        var outputFormatContainer = parseResult.GetValue(OutputFormatOptions.Container);
+                        var outputFormatEncoding = CliRuntime.WasSpecified(parseResult, OutputFormatOptions.Encoding) ? parseResult.GetValue(OutputFormatOptions.Encoding) : (__OutputFormatBase is { } __OutputFormatencodingBaseValue ? __OutputFormatencodingBaseValue.Encoding : default);
                         var outputFormatSampleRate = parseResult.GetValue(OutputFormatOptions.SampleRate);
-                        var outputFormatBitRate = CliRuntime.WasSpecified(parseResult, OutputFormatOptions.BitRate) ? parseResult.GetValue(OutputFormatOptions.BitRate) : (__outputFormatBase is { } __OutputFormatbitRateBaseValue ? __OutputFormatbitRateBaseValue.BitRate : default);
-                        var __outputFormatSpecified = CliRuntime.WasSpecified(parseResult, OutputFormatOptions.Container) || CliRuntime.WasSpecified(parseResult, OutputFormatOptions.Encoding) || CliRuntime.WasSpecified(parseResult, OutputFormatOptions.SampleRate) || CliRuntime.WasSpecified(parseResult, OutputFormatOptions.BitRate);
+                        var outputFormatBitRate = CliRuntime.WasSpecified(parseResult, OutputFormatOptions.BitRate) ? parseResult.GetValue(OutputFormatOptions.BitRate) : (__OutputFormatBase is { } __OutputFormatbitRateBaseValue ? __OutputFormatbitRateBaseValue.BitRate : default);
+                        var __OutputFormatSpecified = CliRuntime.WasSpecified(parseResult, OutputFormatOptions.Container) || CliRuntime.WasSpecified(parseResult, OutputFormatOptions.Encoding) || CliRuntime.WasSpecified(parseResult, OutputFormatOptions.SampleRate) || CliRuntime.WasSpecified(parseResult, OutputFormatOptions.BitRate);
                         var outputFormat =
-                            __outputFormatSpecified || __outputFormatBase is not null
+                            __OutputFormatSpecified || __OutputFormatBase is not null
                                 ? new global::AsyncAI.OutputFormat
                                 {
 	                                Container = outputFormatContainer!,
@@ -108,7 +108,7 @@ Generates speech from text and streams audio in the response body.");
                                 BitRate = outputFormatBitRate,
 
                                 }
-                                : __outputFormatBase;
+                                : __OutputFormatBase;
                 using var client = await CliRuntime.CreateClientAsync(parseResult, cancellationToken).ConfigureAwait(false);
 
 
