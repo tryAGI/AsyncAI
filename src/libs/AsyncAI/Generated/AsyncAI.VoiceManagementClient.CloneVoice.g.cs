@@ -161,14 +161,6 @@ namespace AsyncAI
 
 
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
-                            if (version != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(version ?? string.Empty),
-                                    name: "\"version\"");
-
-                            }
                             var __contentAudio = new global::System.Net.Http.ByteArrayContent(request.Audio ?? global::System.Array.Empty<byte>());
                             __contentAudio.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
                                 request.Audioname is null
@@ -768,14 +760,6 @@ namespace AsyncAI
 
 
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
-                            if (version != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(version ?? string.Empty),
-                                    name: "\"version\"");
-
-                            }
                             var __contentAudio = new global::System.Net.Http.StreamContent(audio);
                             __contentAudio.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
                                 request.Audioname is null
@@ -1308,14 +1292,6 @@ namespace AsyncAI
 
 
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
-                            if (version != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(version ?? string.Empty),
-                                    name: "\"version\"");
-
-                            }
                             var __contentAudio = new global::System.Net.Http.StreamContent(audio);
                             __contentAudio.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
                                 request.Audioname is null
