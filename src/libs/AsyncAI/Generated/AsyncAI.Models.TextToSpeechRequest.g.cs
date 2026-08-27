@@ -4,7 +4,7 @@
 namespace AsyncAI
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class TextToSpeechRequest
     {
@@ -17,28 +17,28 @@ namespace AsyncAI
         public global::AsyncAI.TextToSpeechRequestModelId ModelId { get; set; } = global::AsyncAI.TextToSpeechRequestModelId.AsyncFlashV10;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("transcript")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Transcript { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("voice")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::AsyncAI.VoiceSelector Voice { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("output_format")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::AsyncAI.OutputFormat OutputFormat { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("language")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::AsyncAI.JsonConverters.LanguageCodeJsonConverter))]
@@ -51,13 +51,13 @@ namespace AsyncAI
         public bool? Normalize { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("speed_control")]
         public double? SpeedControl { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("stability")]
         public int? Stability { get; set; }

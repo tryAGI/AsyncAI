@@ -4,16 +4,16 @@
 namespace AsyncAI
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum VoiceVoiceType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Custom,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Predefined,
     }

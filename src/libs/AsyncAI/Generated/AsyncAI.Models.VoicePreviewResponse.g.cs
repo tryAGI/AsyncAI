@@ -4,12 +4,12 @@
 namespace AsyncAI
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class VoicePreviewResponse
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("signed_url")]
         [global::System.Text.Json.Serialization.JsonRequired]

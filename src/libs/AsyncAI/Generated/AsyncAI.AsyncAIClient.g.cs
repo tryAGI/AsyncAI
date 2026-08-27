@@ -11,7 +11,7 @@ namespace AsyncAI
     public sealed partial class AsyncAIClient : global::AsyncAI.IAsyncAIClient, global::System.IDisposable
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string DefaultBaseUrl = "https://api.async.com/";
 
@@ -38,7 +38,7 @@ namespace AsyncAI
         internal global::System.Lazy<global::System.Text.Json.Serialization.JsonSerializerContext> JsonSerializerContextProvider { get; set; } = new(() => global::AsyncAI.SourceGenerationContext.Default);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext
         {
@@ -48,7 +48,7 @@ namespace AsyncAI
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ApiStatusClient ApiStatus => new ApiStatusClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -57,7 +57,7 @@ namespace AsyncAI
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TextToSpeechClient TextToSpeech => new TextToSpeechClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -66,7 +66,7 @@ namespace AsyncAI
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public VoiceManagementClient VoiceManagement => new VoiceManagementClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {

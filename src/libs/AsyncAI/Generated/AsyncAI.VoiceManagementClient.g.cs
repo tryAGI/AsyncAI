@@ -10,7 +10,7 @@ namespace AsyncAI
     public sealed partial class VoiceManagementClient : global::AsyncAI.IVoiceManagementClient, global::System.IDisposable
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string DefaultBaseUrl = "https://api.async.com/";
 
@@ -37,7 +37,7 @@ namespace AsyncAI
         internal global::System.Lazy<global::System.Text.Json.Serialization.JsonSerializerContext> JsonSerializerContextProvider { get; set; } = new(() => global::AsyncAI.SourceGenerationContext.Default);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext
         {

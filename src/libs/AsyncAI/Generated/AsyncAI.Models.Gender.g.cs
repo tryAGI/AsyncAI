@@ -4,24 +4,24 @@
 namespace AsyncAI
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum Gender
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Female,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Male,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Neutral,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Unspecified,
     }

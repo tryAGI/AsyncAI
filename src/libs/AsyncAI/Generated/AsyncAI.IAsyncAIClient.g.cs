@@ -40,23 +40,23 @@ namespace AsyncAI
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext { get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ApiStatusClient ApiStatus { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TextToSpeechClient TextToSpeech { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public VoiceManagementClient VoiceManagement { get; }
 

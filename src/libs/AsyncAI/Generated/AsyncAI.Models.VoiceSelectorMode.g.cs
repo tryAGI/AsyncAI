@@ -4,12 +4,12 @@
 namespace AsyncAI
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum VoiceSelectorMode
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Id,
     }
