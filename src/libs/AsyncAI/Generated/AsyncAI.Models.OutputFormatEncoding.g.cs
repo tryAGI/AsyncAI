@@ -9,15 +9,15 @@ namespace AsyncAI
     public enum OutputFormatEncoding
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         PcmF32le,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         PcmMulaw,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         PcmS16le,
     }

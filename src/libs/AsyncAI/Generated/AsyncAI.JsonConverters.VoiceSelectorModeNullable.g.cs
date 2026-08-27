@@ -20,7 +20,7 @@ namespace AsyncAI.JsonConverters
                     {
                         return global::AsyncAI.VoiceSelectorModeExtensions.ToEnum(stringValue);
                     }
-                    
+
                     break;
                 }
                 case global::System.Text.Json.JsonTokenType.Number:

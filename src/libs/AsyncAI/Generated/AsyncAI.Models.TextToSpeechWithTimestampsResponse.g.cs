@@ -4,19 +4,19 @@
 namespace AsyncAI
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class TextToSpeechWithTimestampsResponse
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("audio_base64")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string AudioBase64 { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("alignment")]
         [global::System.Text.Json.Serialization.JsonRequired]
