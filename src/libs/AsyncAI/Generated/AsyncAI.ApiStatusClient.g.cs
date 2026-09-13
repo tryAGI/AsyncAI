@@ -34,7 +34,7 @@ namespace AsyncAI
         /// <inheritdoc/>
         public global::AsyncAI.AutoSDKClientOptions Options { get; }
 
-        internal global::System.Lazy<global::System.Text.Json.Serialization.JsonSerializerContext> JsonSerializerContextProvider { get; set; } = new(() => global::AsyncAI.SourceGenerationContext.Default);
+        internal global::System.Lazy<global::System.Text.Json.Serialization.JsonSerializerContext> JsonSerializerContextProvider { get; set; } = new(() => global::AsyncAI.ApiStatusSourceGenerationContext.Default);
 
         /// <summary>
         ///
