@@ -4,8 +4,10 @@ using System.CommandLine;
 
 namespace AsyncAI.CLI.Commands;
 
-internal static class VoiceManagementApiGroupCommand
+internal static partial class VoiceManagementApiGroupCommand
 {
+    static partial void CustomizeCommand(ref Command command);
+
     public static Command Create()
     {
         var command = new Command(@"voice-management", @"Voice Management endpoint commands.");
@@ -16,6 +18,7 @@ internal static class VoiceManagementApiGroupCommand
                          command.Subcommands.Add(VoiceManagementGetVoicesBatchCommandApiCommand.Create());
                          command.Subcommands.Add(VoiceManagementListVoicesCommandApiCommand.Create());
                          command.Subcommands.Add(VoiceManagementUpdateVoiceCommandApiCommand.Create());
+        CustomizeCommand(ref command);
         return command;
     }
 }

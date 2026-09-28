@@ -54,6 +54,8 @@ internal static partial class TextToSpeechSynthesizeSpeechWithTimestampsCommandA
                     static partial void CustomizeResponseFormatHints(Dictionary<string, CliFormatHint> hints);
 
 
+    static partial void CustomizeCommand(ref Command command);
+
     public static Command Create()
     {
         var command = new Command(@"synthesize-speech-with-timestamps", @"Text to speech with word timestamps
@@ -152,6 +154,7 @@ Generates speech and returns base64 audio with word-level timestamps.");
                                     FormatResponse,
                                     cancellationToken).ConfigureAwait(false);
             }, cancellationToken).ConfigureAwait(false));
+        CustomizeCommand(ref command);
         return command;
     }
 }

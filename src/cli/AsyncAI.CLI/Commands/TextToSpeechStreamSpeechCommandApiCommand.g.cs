@@ -34,6 +34,8 @@ internal static partial class TextToSpeechStreamSpeechCommandApiCommand
           Hidden = true,
       };
 
+    static partial void CustomizeCommand(ref Command command);
+
     public static Command Create()
     {
         var command = new Command(@"stream-speech", @"Text to speech stream
@@ -126,6 +128,7 @@ Generates speech from text and streams audio in the response body.");
 
                                 await CliRuntime.WriteBinaryAsync(parseResult, response, cancellationToken).ConfigureAwait(false);
             }, cancellationToken).ConfigureAwait(false));
+        CustomizeCommand(ref command);
         return command;
     }
 }
