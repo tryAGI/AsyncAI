@@ -19,6 +19,8 @@ internal static partial class VoiceManagementDeleteVoiceCommandApiCommand
         Description = @"API version header.",
     };
 
+    static partial void CustomizeCommand(ref Command command);
+
     public static Command Create()
     {
         var command = new Command(@"delete-voice", @"Delete voice
@@ -42,6 +44,7 @@ Deletes a cloned voice by id.");
 
                                 await CliRuntime.WriteSuccessAsync(parseResult, cancellationToken).ConfigureAwait(false);
             }, cancellationToken).ConfigureAwait(false));
+        CustomizeCommand(ref command);
         return command;
     }
 }

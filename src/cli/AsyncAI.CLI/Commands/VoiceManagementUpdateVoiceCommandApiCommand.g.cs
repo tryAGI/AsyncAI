@@ -65,6 +65,8 @@ internal static partial class VoiceManagementUpdateVoiceCommandApiCommand
           Hidden = true,
       };
 
+    static partial void CustomizeCommand(ref Command command);
+
     public static Command Create()
     {
         var command = new Command(@"update-voice", @"Update voice
@@ -123,6 +125,7 @@ Updates metadata for a cloned voice.");
 
                                 await CliRuntime.WriteSuccessAsync(parseResult, cancellationToken).ConfigureAwait(false);
             }, cancellationToken).ConfigureAwait(false));
+        CustomizeCommand(ref command);
         return command;
     }
 }
