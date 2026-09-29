@@ -35,9 +35,9 @@ internal static partial class ApiStatusGetStatusCommandApiCommand
 
     static partial void CustomizeCommand(ref Command command);
 
-    public static Command Create()
+    public static Command Create(string? commandName = null)
     {
-        var command = new Command(@"get-status", @"API status check");
+        var command = new Command(commandName ?? @"get-status", @"API status check");
                         command.Options.Add(Version);
 
 

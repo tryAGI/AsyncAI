@@ -36,9 +36,9 @@ internal static partial class TextToSpeechSynthesizeSpeechCommandApiCommand
 
     static partial void CustomizeCommand(ref Command command);
 
-    public static Command Create()
+    public static Command Create(string? commandName = null)
     {
-        var command = new Command(@"synthesize-speech", @"Text to speech
+        var command = new Command(commandName ?? @"synthesize-speech", @"Text to speech
 Generates speech from text and returns complete audio.");
                         command.Options.Add(Version);                        command.Options.Add(TextToSpeechRequestOptionSetOptions.ModelId);
                         command.Options.Add(TextToSpeechRequestOptionSetOptions.Transcript);

@@ -67,9 +67,9 @@ internal static partial class VoiceManagementUpdateVoiceCommandApiCommand
 
     static partial void CustomizeCommand(ref Command command);
 
-    public static Command Create()
+    public static Command Create(string? commandName = null)
     {
-        var command = new Command(@"update-voice", @"Update voice
+        var command = new Command(commandName ?? @"update-voice", @"Update voice
 Updates metadata for a cloned voice.");
                         command.Arguments.Add(Id);
                         command.Options.Add(Version);

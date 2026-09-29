@@ -42,9 +42,9 @@ internal static partial class VoiceManagementGetVoicesBatchCommandApiCommand
 
     static partial void CustomizeCommand(ref Command command);
 
-    public static Command Create()
+    public static Command Create(string? commandName = null)
     {
-        var command = new Command(@"get-voices-batch", @"Get voices by id
+        var command = new Command(commandName ?? @"get-voices-batch", @"Get voices by id
 Gets multiple voices by voice id.");
                         command.Options.Add(Version);
                         command.Options.Add(VoiceIds);
