@@ -36,9 +36,9 @@ internal static partial class TextToSpeechStreamSpeechCommandApiCommand
 
     static partial void CustomizeCommand(ref Command command);
 
-    public static Command Create()
+    public static Command Create(string? commandName = null)
     {
-        var command = new Command(@"stream-speech", @"Text to speech stream
+        var command = new Command(commandName ?? @"stream-speech", @"Text to speech stream
 Generates speech from text and streams audio in the response body.");
                         command.Options.Add(Version);                        command.Options.Add(TextToSpeechRequestOptionSetOptions.ModelId);
                         command.Options.Add(TextToSpeechRequestOptionSetOptions.Transcript);

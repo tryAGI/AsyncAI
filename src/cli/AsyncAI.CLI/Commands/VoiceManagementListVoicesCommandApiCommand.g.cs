@@ -97,9 +97,9 @@ internal static partial class VoiceManagementListVoicesCommandApiCommand
 
     static partial void CustomizeCommand(ref Command command);
 
-    public static Command Create()
+    public static Command Create(string? commandName = null)
     {
-        var command = new Command(@"list-voices", @"List voices
+        var command = new Command(commandName ?? @"list-voices", @"List voices
 Lists available voices from the voice library.");
                         command.Options.Add(Version);
                         command.Options.Add(Limit);

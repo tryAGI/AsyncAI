@@ -21,9 +21,9 @@ internal static partial class VoiceManagementDeleteVoiceCommandApiCommand
 
     static partial void CustomizeCommand(ref Command command);
 
-    public static Command Create()
+    public static Command Create(string? commandName = null)
     {
-        var command = new Command(@"delete-voice", @"Delete voice
+        var command = new Command(commandName ?? @"delete-voice", @"Delete voice
 Deletes a cloned voice by id.");
                         command.Arguments.Add(Id);
                         command.Options.Add(Version);
