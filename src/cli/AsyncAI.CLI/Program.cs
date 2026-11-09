@@ -14,5 +14,6 @@ rootCommand.Subcommands.Add(AuthCommand.Create());
 rootCommand.Subcommands.Add(APIStatusApiGroupCommand.Create());
 rootCommand.Subcommands.Add(TextToSpeechApiGroupCommand.Create());
 rootCommand.Subcommands.Add(VoiceManagementApiGroupCommand.Create());
+rootCommand.Subcommands.Add(CliCompletion.CreateCommand(rootCommand, @"async-ai"));
 
 return await rootCommand.Parse(args).InvokeAsync().ConfigureAwait(false);
