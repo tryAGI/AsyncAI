@@ -18,7 +18,7 @@ namespace AsyncAI.JsonConverters
                     var stringValue = reader.GetString();
                     if (stringValue != null)
                     {
-                        return global::AsyncAI.OutputFormatEncodingExtensions.ToEnum(stringValue) ?? default;
+                        return global::AsyncAI.OutputFormatEncodingExtensions.ToEnum(stringValue) ?? throw new global::System.Text.Json.JsonException($"Unknown value '{stringValue}' for global::AsyncAI.OutputFormatEncoding.");
                     }
 
                     break;
